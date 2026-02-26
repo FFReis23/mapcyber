@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Cyber Threat Intelligence</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body {
+    margin: 0;
+    background: #0b0f14;
+    font-family: 'Share Tech Mono', monospace;
+    color: #00ff41;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+
+.maps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.map-container {
+    background: #111827;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,255,65,0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.map-header {
+    padding: 10px;
+    background: #0f172a;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(0,255,65,0.2);
+}
+
+.map-header i {
+    margin-right: 8px;
+}
+
+iframe {
+    width: 100%;
+    height: 350px;
+    border: none;
+}
+
+@media(max-width: 768px){
+    iframe {
+        height: 300px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>🌍 GLOBAL CYBER THREAT MAP PANEL</h1>
+
+<div class="maps-grid">
+
+    <!-- CHECK POINT -->
+    <div class="map-container">
+        <div class="map-header">
+            <i class="fas fa-shield-alt"></i> CHECK POINT THREAT MAP
+        </div>
+        <iframe src="https://threatmap.checkpoint.com/"></iframe>
+    </div>
+
+    <!-- FORTIGUARD -->
+    <div class="map-container">
+        <div class="map-header">
+            <i class="fas fa-network-wired"></i> FORTIGUARD THREAT MAP
+        </div>
+        <iframe src="https://threatmap.fortiguard.com/"></iframe>
+    </div>
+
+    <!-- BITDEFENDER -->
+    <div class="map-container">
+        <div class="map-header">
+            <i class="fas fa-radar"></i> BITDEFENDER LIVE THREATS
+        </div>
+        <iframe src="https://threatmap.bitdefender.com/"></iframe>
+    </div>
+
+    <!-- KASPERSKY -->
+    <div class="map-container">
+        <div class="map-header">
+            <i class="fas fa-virus"></i> KASPERSKY CYBERTHREAT MAP
+        </div>
+        <iframe src="https://cybermap.kaspersky.com/"></iframe>
+    </div>
+
+    <!-- SOPHOS -->
+    <div class="map-container">
+        <div class="map-header">
+            <i class="fas fa-user-shield"></i> SOPHOS THREAT MAP
+        </div>
+        <iframe src="https://threatmap.sophos.com/"></iframe>
+    </div>
+
+    <!-- TREND MICRO -->
+    <div class="map-container">
+        <div class="map-header">
+            <i class="fas fa-globe-americas"></i> TREND MICRO CYBER RISK MAP
+        </div>
+        <iframe src="https://global.sitesafety.trendmicro.com/"></iframe>
+    </div>
+
+</div>
+
+</body>
+</html>
