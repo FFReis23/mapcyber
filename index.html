@@ -15,24 +15,24 @@ body {
 /* HEADER GRANDE */
 header {
     text-align: center;
-    padding: 25px;
-    font-size: 32px;
+    padding: 30px;
+    font-size: 36px;
     font-weight: bold;
-    border-bottom: 2px solid #00ffcc;
+    border-bottom: 3px solid #00ffcc;
     background: #03141f;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 }
 
 /* GRID GRANDE */
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 45vh 45vh;
+    grid-template-rows: 48vh 48vh;
     gap: 20px;
     padding: 20px;
 }
 
-/* CARDS GRANDES */
+/* CARDS */
 .card {
     background: #071d2b;
     border: 2px solid #00ffcc;
@@ -42,24 +42,23 @@ header {
     flex-direction: column;
 }
 
-/* TITULO DOS MAPAS MAIOR */
 .card h3 {
     margin: 0;
-    padding: 12px;
-    font-size: 20px;
+    padding: 15px;
+    font-size: 22px;
     background: #06202e;
     border-bottom: 2px solid #00ffcc;
     text-align: center;
 }
 
-/* IFRAME GIGANTE */
+/* IFRAME */
 iframe {
     flex: 1;
     width: 100%;
     border: none;
 }
 
-/* BOTÃO FULL */
+/* BOTÃO FULLSCREEN */
 button {
     position: fixed;
     top: 20px;
@@ -83,7 +82,7 @@ button:hover {
 <body>
 
 <header>
- STRIPED OWL SECURITY CYBER THREAT INTELLIGENCE CENTER
+STRIPED OWL SECURITY CYBER THREAT INTELLIGENCE CENTER
 </header>
 
 <button onclick="openFullscreen()">FULL SCREEN</button>
@@ -106,8 +105,8 @@ button:hover {
 </div>
 
 <div class="card">
-<h3>Kaspersky Cyber Map</h3>
-<iframe src="https://cybermap.kaspersky.com/"></iframe>
+<h3>Radware Live Threat Map</h3>
+<iframe src="https://livethreatmap.radware.com/"></iframe>
 </div>
 
 </div>
