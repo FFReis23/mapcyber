@@ -2,163 +2,109 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Global Cyber Threat Intelligence Panel</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<title>STRIPED OWL SECURITY - Global Cyber Threat Intelligence Center</title>
 
 <style>
 body {
     margin: 0;
-    background: #0b0f14;
-    font-family: 'Share Tech Mono', monospace;
-    color: #00ff41;
+    background-color: #050d14;
+    font-family: Arial, sans-serif;
+    color: #00ffcc;
 }
 
-h1 {
+header {
     text-align: center;
-    padding: 20px;
-    font-size: 26px;
-    letter-spacing: 2px;
+    padding: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    border-bottom: 1px solid #00ffcc;
+    background: #03141f;
 }
 
-.maps-grid {
+.grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 15px;
 }
 
-.map-container {
-    background: #111827;
+.card {
+    background: #071d2b;
+    border: 1px solid #00ffcc;
     border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0,255,65,0.15);
-    display: flex;
-    flex-direction: column;
     overflow: hidden;
 }
 
-.map-header {
-    padding: 10px;
-    background: #0f172a;
-    font-size: 13px;
-    border-bottom: 1px solid rgba(0,255,65,0.2);
-}
-
-.map-header i {
-    margin-right: 8px;
+.card h3 {
+    margin: 0;
+    padding: 8px;
+    font-size: 14px;
+    background: #06202e;
+    border-bottom: 1px solid #00ffcc;
 }
 
 iframe {
     width: 100%;
-    height: 330px;
+    height: 600px;
     border: none;
 }
 
-.external-btn {
-    flex: 1;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+button {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    background: #00ffcc;
+    color: #000;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
 }
 
-.external-btn a {
-    padding:12px 20px;
-    background:#1f2937;
-    color:#00ff41;
-    text-decoration:none;
-    border-radius:4px;
-    border:1px solid rgba(0,255,65,0.4);
-    transition:0.3s;
-}
-
-.external-btn a:hover {
-    background:#00ff41;
-    color:#000;
+button:hover {
+    background: #00ffaa;
 }
 </style>
 </head>
 
 <body>
 
-<h1>🌍 GLOBAL CYBER THREAT INTELLIGENCE CENTER</h1>
+<header>
+🌍 GLOBAL CYBER THREAT INTELLIGENCE CENTER
+</header>
 
-<div class="maps-grid">
+<button onclick="openFullscreen()">FULL SCREEN</button>
 
-<!-- CHECK POINT -->
-<div class="map-container">
-    <div class="map-header">
-        <i class="fas fa-shield-alt"></i> CHECK POINT THREAT MAP
-    </div>
-    <iframe src="https://threatmap.checkpoint.com/"></iframe>
+<div class="grid">
+
+<div class="card">
+<h3>Check Point Live Threat Map</h3>
+<iframe src="https://threatmap.checkpoint.com/"></iframe>
 </div>
 
-<!-- FORTIGUARD -->
-<div class="map-container">
-    <div class="map-header">
-        <i class="fas fa-network-wired"></i> FORTIGUARD THREAT MAP
-    </div>
-    <iframe src="https://threatmap.fortiguard.com/"></iframe>
+<div class="card">
+<h3>FortiGuard Threat Map</h3>
+<iframe src="https://threatmap.fortiguard.com/"></iframe>
 </div>
 
-<!-- BITDEFENDER -->
-<div class="map-container">
-    <div class="map-header">
-        <i class="fas fa-radar"></i> BITDEFENDER LIVE THREATS
-    </div>
-    <iframe src="https://threatmap.bitdefender.com/"></iframe>
+<div class="card">
+<h3>Bitdefender Cyber Threat Map</h3>
+<iframe src="https://threatmap.bitdefender.com/"></iframe>
 </div>
 
-<!-- KASPERSKY -->
-<div class="map-container">
-    <div class="map-header">
-        <i class="fas fa-virus"></i> KASPERSKY CYBERTHREAT MAP
-    </div>
-    <iframe src="https://cybermap.kaspersky.com/"></iframe>
-</div>
-
-<!-- SOPHOS -->
-<div class="map-container">
-    <div class="map-header">
-        <i class="fas fa-user-shield"></i> SOPHOS THREAT MAP
-    </div>
-    <iframe src="https://threatmap.sophos.com/"></iframe>
-</div>
-
-<!-- TREND MICRO -->
-<div class="map-container">
-    <div class="map-header">
-        <i class="fas fa-globe-americas"></i> TREND MICRO CYBER RISK MAP
-    </div>
-    <iframe src="https://global.sitesafety.trendmicro.com/"></iframe>
-</div>
-
-<!-- RADWARE (BOTÃO EXTERNO) -->
-<div class="map-container">
-    <div class="map-header">
-        <i class="fas fa-bolt"></i> RADWARE DDOS LIVE MAP
-    </div>
-    <div class="external-btn">
-        <a href="https://livethreatmap.radware.com/" target="_blank">
-            Abrir Radware Live Map
-        </a>
-    </div>
-</div>
-
-<!-- CLOUDFLARE (BOTÃO EXTERNO) -->
-<div class="map-container">
-    <div class="map-header">
-        <i class="fas fa-cloud"></i> CLOUDFLARE RADAR
-    </div>
-    <div class="external-btn">
-        <a href="https://radar.cloudflare.com/" target="_blank">
-            Abrir Cloudflare Radar
-        </a>
-    </div>
+<div class="card">
+<h3>Kaspersky Cyber Map</h3>
+<iframe src="https://cybermap.kaspersky.com/"></iframe>
 </div>
 
 </div>
+
+<script>
+function openFullscreen() {
+    document.documentElement.requestFullscreen();
+}
+</script>
 
 </body>
 </html>
