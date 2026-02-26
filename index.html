@@ -1,198 +1,106 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Striped Owl Security | Cyber Threat Intel</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Striped Owl Live Threat Map</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 
 <style>
-:root {
-    --neon-blue: #547fb3;
-    --bg-dark: #0b1e33;
-    --border-color: rgba(84, 127, 179, 0.3);
-    --container-bg: rgba(16, 38, 64, 0.9);
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: var(--bg-dark);
-    color: #fff;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 20px;
-    background-image: radial-gradient(circle at top, #162a44 0%, #0b1e33 80%);
+    margin: 0;
+    background: #0b1e33;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+}
+
+#map {
+    height: 100vh;
+    width: 100%;
 }
 
 .header {
-    text-align: center;
-    margin-bottom: 40px;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    color: #00ffcc;
+    font-size: 20px;
+    letter-spacing: 3px;
+    text-shadow: 0 0 15px #00ffcc;
 }
 
-.header-logo {
-    width: 80px;
-    filter: drop-shadow(0 0 10px var(--neon-blue));
-    margin-bottom: 15px;
-}
-
-h1 {
-    font-family: 'Share Tech Mono', monospace;
-    letter-spacing: 6px;
-    font-size: 32px;
-    text-transform: uppercase;
-    text-shadow: 0 0 15px var(--neon-blue);
-    color: var(--neon-blue);
-}
-
-.subtitle {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.5);
-    margin-top: 8px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.maps-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    width: 100%;
-    max-width: 1800px;
-    margin-bottom: 50px;
-}
-
-.map-container {
-    background: var(--container-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-    height: 400px;
-    display: flex;
-    flex-direction: column;
-    transition: 0.3s ease;
-}
-
-.map-container:hover {
-    transform: translateY(-5px);
-    border-color: var(--neon-blue);
-}
-
-.map-header {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 12px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    color: var(--neon-blue);
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.map-container iframe {
-    flex-grow: 1;
-    width: 100%;
-    border: none;
-    background: #000;
-    filter: brightness(0.85) contrast(1.1);
-}
-
-/* Responsividade */
-@media (max-width: 1400px) {
-    .maps-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 900px) {
-    .maps-grid {
-        grid-template-columns: 1fr;
-    }
-    h1 {
-        font-size: 24px;
-    }
-}
-
-.footer {
-    font-size: 10px;
-    color: rgba(255,255,255,0.3);
-    text-align: center;
-    padding: 20px;
-    border-top: 1px solid var(--border-color);
-    width: 100%;
+.counter {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    z-index: 1000;
+    color: #00ff41;
+    font-size: 18px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
-    <img src="{{ url_for('static', filename='coruja.png') }}" class="header-logo">
-    <h1>CYBER THREAT INTELLIGENCE</h1>
-    <div class="subtitle">> GLOBAL MONITORING UNIT _ ACTIVE</div>
-</div>
+<div class="header">STRIPED OWL SECURITY — LIVE GLOBAL THREATS</div>
+<div class="counter">ATTACKS: <span id="attackCount">0</span></div>
 
-<div class="maps-grid">
+<div id="map"></div>
 
-    <div class="map-container">
-        <div class="map-header">
-            <i class="fas fa-shield-alt"></i> CHECK POINT THREAT MAP
-        </div>
-        <iframe src="https://threatmap.checkpoint.com/"></iframe>
-    </div>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-    <div class="map-container">
-        <div class="map-header">
-            <i class="fas fa-network-wired"></i> FORTIGUARD THREAT MAP
-        </div>
-        <iframe src="https://threatmap.fortiguard.com/"></iframe>
-    </div>
+<script>
+var map = L.map('map', {
+    zoomControl: false,
+    attributionControl: false
+}).setView([20, 0], 2);
 
-    <div class="map-container">
-        <div class="map-header">
-            <i class="fas fa-radar"></i> BITDEFENDER LIVE THREATS
-        </div>
-        <iframe src="https://threatmap.bitdefender.com/"></iframe>
-    </div>
+L.tileLayer(
+    'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+).addTo(map);
 
-    <div class="map-container">
-        <div class="map-header">
-            <i class="fas fa-globe"></i> AKAMAI WEB MONITOR
-        </div>
-        <iframe src="https://www.akamai.com/pt/resources/visualizing-akamai/real-time-web-monitor"></iframe>
-    </div>
+let attackCounter = 0;
 
-    <div class="map-container">
-        <div class="map-header">
-            <i class="fas fa-satellite-dish"></i> CISCO TALOS INTELLIGENCE
-        </div>
-        <iframe src="https://talosintelligence.com/fullpage_map"></iframe>
-    </div>
+function simulateAttack() {
 
-    <div class="map-container">
-        <div class="map-header">
-            <i class="fas fa-microchip"></i> ESET LIVEGRID® STATUS
-        </div>
-        <iframe src="https://www.eset.com/int/eset-livegrid-map/"></iframe>
-    </div>
+    var origin = [
+        (Math.random() * 140 - 70),
+        (Math.random() * 360 - 180)
+    ];
 
-</div>
+    var target = [
+        (Math.random() * 140 - 70),
+        (Math.random() * 360 - 180)
+    ];
 
-<div class="footer">
-© 2026 Striped Owl Security — Operação de Inteligência Cibernética
-</div>
+    var attackLine = L.polyline([origin, target], {
+        color: '#ff0033',
+        weight: 2,
+        opacity: 0.8
+    }).addTo(map);
+
+    var impact = L.circleMarker(target, {
+        radius: 6,
+        color: '#00ff41',
+        fillColor: '#00ff41',
+        fillOpacity: 0.8
+    }).addTo(map);
+
+    setTimeout(() => {
+        map.removeLayer(attackLine);
+        map.removeLayer(impact);
+    }, 2000);
+
+    attackCounter++;
+    document.getElementById("attackCount").innerText = attackCounter;
+}
+
+setInterval(simulateAttack, 800);
+
+</script>
 
 </body>
 </html>
